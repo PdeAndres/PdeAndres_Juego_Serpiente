@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+.container {
+  margin: 0 auto;
+  width: 600px;
+  height: 700px;
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+.nav {
+}
+
+.game-area {
+}
+
+.startBtn {
+}
+
+.snake {
+  background-color: black;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: none; */
+}
