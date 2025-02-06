@@ -12,7 +12,11 @@ body {
 .nav {
 }
 
-.game-area {
+.gameBoard {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
 }
 
 .startBtn {
@@ -23,7 +27,18 @@ body {
   height: 30px;
   width: 30px;
   position: absolute;
+  top: 250px;
+  left: 250px;
+  display: none;
+}
+
+.food {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  position: absolute;
   top: 0;
   left: 0;
-  /* display: none; */
+  display: none;
+  border-radius: 50%;
 }
