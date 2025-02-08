@@ -24,7 +24,7 @@ function startGame() {
 
   snakeTopPos = 250;
   snakeLeftPos = 250;
-  speed = 100;
+  speed = 70;
   score = 0;
   $(".scoreValue").text(score);
 
@@ -138,11 +138,13 @@ function checkCollision() {
   let foodTopPos = parseInt(food.css("top"));
   let foodLeftPos = parseInt(food.css("left"));
 
+  let snakeWidth = $(".snake").width();
+  let snakeHeight = $(".snake").height();
   if (
-    snakeTopPos < foodTopPos + foodSize && //la serpiente está por encima de la comida
-    snakeTopPos + 10 > foodTopPos && //  la serpiente está por debajo de la comida
-    snakeLeftPos < foodLeftPos + foodSize && // la serpiente está a la izquierda de la comida
-    snakeLeftPos + 10 > foodLeftPos //la serpiente está a la derecha de la comida
+    snakeTopPos + snakeHeight > foodTopPos && // La parte inferior de la serpiente toca o cruza la parte superior de la comida
+    snakeTopPos < foodTopPos + foodSize && // La parte superior de la serpiente toca o cruza la parte inferior de la comida
+    snakeLeftPos + snakeWidth > foodLeftPos && // La parte derecha de la serpiente toca o cruza la parte izquierda de la comida
+    snakeLeftPos < foodLeftPos + foodSize // La parte izquierda de la serpiente toca o cruza la parte derecha de la comida
   ) {
     if (speed > 50) {
       score += 10;
@@ -154,7 +156,11 @@ function checkCollision() {
 
     $(".scoreValue").text(score);
 
-    speed -= 5;
+    if (speed > 15) {
+      speed -= 5;
+    }
+
+    console.log(speed);
     spawnFood();
   }
 }
