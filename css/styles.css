@@ -13,21 +13,23 @@ h2 {
   margin: 0 0 20px;
 }
 
+p {
+  margin: 0 0 20px;
+}
 button {
   font-family: "Press Start 2P", cursive;
-  font-size: 14px;
-  background-color: #e2062c; /* Rojo neón */
+  font-size: 16px;
+  background-color: #e2062c;
   color: white;
-  border: 4px solid #8bac0f; /* Verde grisáceo retro */
-  padding: 10px 20px;
+  border: 4px solid #8bac0f;
+  padding: 20px;
   cursor: pointer;
-  text-transform: uppercase;
-  box-shadow: 4px 4px 0px #306230; /* Sombra pixelada */
+  box-shadow: 4px 4px 0px #306230;
   transition: all 0.1s ease-in-out;
 }
 
 button:active {
-  box-shadow: 2px 2px 0px #306230; /* Efecto de presionado */
+  box-shadow: 2px 2px 0px #306230;
   transform: translate(2px, 2px);
 }
 
@@ -47,6 +49,11 @@ button:active {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.control {
+  width: 50%;
+  line-height: 1.5;
 }
 
 .container {
@@ -87,7 +94,7 @@ button:active {
 }
 
 .snake {
-  background-color: #2e7d32;
+  background: rgba(15, 56, 15, 0.8);
   height: 40px;
   width: 40px;
   position: absolute;
