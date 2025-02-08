@@ -5,7 +5,8 @@ $(document).ready(function () {
 let interval;
 let snakeTopPos = 250;
 let snakeLeftPos = 250;
-let snakeBody = [{ top: snakeTopPos, left: snakeLeftPos }];
+let speed = 70;
+let score = 0;
 
 function startGame() {
   if (interval) {
@@ -23,7 +24,9 @@ function startGame() {
 
   snakeTopPos = 250;
   snakeLeftPos = 250;
-  snakeBody = [{ top: snakeTopPos, left: snakeLeftPos }];
+  speed = 100;
+  score = 0;
+  $(".scoreValue").text(score);
 
   snake.css({
     display: "block",
@@ -42,30 +45,27 @@ function startGame() {
   $(document).on("keydown", (event) => {
     switch (event.key) {
       case "ArrowRight":
-        console.log(event.key);
         clearInterval(interval);
-        interval = setInterval(rightMove, 100);
+        interval = setInterval(rightMove, speed);
         break;
       case "ArrowLeft":
         clearInterval(interval);
-        interval = setInterval(leftMove, 100);
-        console.log(event.key);
+        interval = setInterval(leftMove, speed);
 
         break;
       case "ArrowUp":
         clearInterval(interval);
-        interval = setInterval(upMove, 100);
-        console.log(event.key);
+        interval = setInterval(upMove, speed);
 
         break;
       case "ArrowDown":
         clearInterval(interval);
-        interval = setInterval(downMove, 100);
-        console.log(event.key);
+        interval = setInterval(downMove, speed);
         break;
     }
   });
 
+  // Movimiento de la serpiente
   function rightMove() {
     if (snakeLeftPos + 10 + snakeWidth <= boardWidth) {
       snakeLeftPos += 10;
@@ -107,6 +107,7 @@ function startGame() {
   }
 }
 
+// Spawn Comida
 function spawnFood() {
   let gameBoard = $(".gameBoard");
   let food = $(".food");
@@ -132,23 +133,34 @@ function checkCollision() {
   let foodSize = food.width();
   let foodTopPos = parseInt(food.css("top"));
   let foodLeftPos = parseInt(food.css("left"));
-
-  // Verificar si la cabeza de la serpiente colisiona con la comida
   if (
     snakeTopPos < foodTopPos + foodSize && // la cabeza de la serpiente está por encima de la comida
     snakeTopPos + 10 > foodTopPos && // la cabeza de la serpiente está por debajo de la comida
     snakeLeftPos < foodLeftPos + foodSize && // la cabeza de la serpiente está a la izquierda de la comida
     snakeLeftPos + 10 > foodLeftPos // la cabeza de la serpiente está a la derecha de la comida
   ) {
-    // La serpiente ha comido la comida
+    if (speed > 50) {
+      score += 10;
+    } else if ((speed <= 50) & (speed > 20)) {
+      score += 15;
+    } else {
+      score += 20;
+    }
+
+    $(".scoreValue").text(score);
+
+    speed -= 5;
     spawnFood(); // Generamos una nueva comida
-    console.log("Colisión detectada, comida consumida");
   }
 }
 
 function endGame(interval) {
   clearInterval(interval);
   $(".snake").css({
+    display: "none",
+  });
+
+  $(".food").css({
     display: "none",
   });
 
