@@ -45,20 +45,24 @@ function startGame() {
   $(document).on("keydown", (event) => {
     switch (event.key) {
       case "ArrowRight":
+      case "d":
         clearInterval(interval);
         interval = setInterval(rightMove, speed);
         break;
       case "ArrowLeft":
+      case "a":
         clearInterval(interval);
         interval = setInterval(leftMove, speed);
 
         break;
       case "ArrowUp":
+      case "w":
         clearInterval(interval);
         interval = setInterval(upMove, speed);
 
         break;
       case "ArrowDown":
+      case "s":
         clearInterval(interval);
         interval = setInterval(downMove, speed);
         break;
