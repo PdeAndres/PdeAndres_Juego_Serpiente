@@ -1,35 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 body {
   margin: 0;
+  background-color: #a5d6a7;
+  color: white;
+  font-family: "Press Start 2P", cursive;
 }
-.container {
-  margin: 0 auto;
-  width: 600px;
-  height: 700px;
-  background-color: lightgray;
-  border: 1px solid black;
+h1 {
+  margin: 0 0 20px;
+}
+h2 {
+  margin: 0 0 20px;
 }
 
-.nav {
+button {
+  font-family: "Press Start 2P", cursive;
+  font-size: 14px;
+  background-color: #e2062c; /* Rojo neón */
+  color: white;
+  border: 4px solid #8bac0f; /* Verde grisáceo retro */
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px #306230; /* Sombra pixelada */
+  transition: all 0.1s ease-in-out;
+}
+
+button:active {
+  box-shadow: 2px 2px 0px #306230; /* Efecto de presionado */
+  transform: translate(2px, 2px);
+}
+
+.startGame {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  margin: 0 auto;
+  width: 50%;
+  height: 300px;
+  background: rgba(15, 56, 15, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  height: 100vh;
+  width: 600px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Nav */
+
+.nav {
+  background-color: #0f380f; /* Verde claro */
+  color: white;
+  width: 100%;
+  height: 75px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .score {
   display: none;
 }
 
+/* Tablero */
+
 .gameBoard {
-  width: 100%;
+  background-color: #81c784; /* Verde pastel */
+  width: 600px;
   height: 600px;
   position: relative;
   overflow: hidden;
 }
 
-.startBtn {
-}
-
 .snake {
-  background-color: black;
+  background-color: #2e7d32;
   height: 40px;
   width: 40px;
   position: absolute;
@@ -41,10 +99,25 @@ body {
 .food {
   width: 50px;
   height: 50px;
-  background-color: red;
+  background-color: #d32f2f;
   position: absolute;
   top: 0;
   left: 0;
   display: none;
   border-radius: 50%;
+}
+
+.gameOver {
+  position: fixed;
+  top: 25%;
+  z-index: 1000;
+  background: rgba(15, 56, 15, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

@@ -12,12 +12,12 @@ function startGame() {
   if (interval) {
     clearInterval(interval);
   }
-
+  $(".gameOver").css({ display: "none" });
+  $(".start").css({ display: "none" });
+  $(".score").css({ display: "block" });
+  $(".startGame").css({ display: "none" });
+  $(".container").css({ display: "flex" });
   spawnFood();
-
-  $(".reset").on("click", () => {
-    endGame(interval);
-  });
 
   let snake = $(".snake");
   let gameBoard = $(".gameBoard");
@@ -133,11 +133,12 @@ function checkCollision() {
   let foodSize = food.width();
   let foodTopPos = parseInt(food.css("top"));
   let foodLeftPos = parseInt(food.css("left"));
+
   if (
-    snakeTopPos < foodTopPos + foodSize && // la cabeza de la serpiente está por encima de la comida
-    snakeTopPos + 10 > foodTopPos && // la cabeza de la serpiente está por debajo de la comida
-    snakeLeftPos < foodLeftPos + foodSize && // la cabeza de la serpiente está a la izquierda de la comida
-    snakeLeftPos + 10 > foodLeftPos // la cabeza de la serpiente está a la derecha de la comida
+    snakeTopPos < foodTopPos + foodSize && //la serpiente está por encima de la comida
+    snakeTopPos + 10 > foodTopPos && //  la serpiente está por debajo de la comida
+    snakeLeftPos < foodLeftPos + foodSize && // la serpiente está a la izquierda de la comida
+    snakeLeftPos + 10 > foodLeftPos //la serpiente está a la derecha de la comida
   ) {
     if (speed > 50) {
       score += 10;
@@ -150,7 +151,7 @@ function checkCollision() {
     $(".scoreValue").text(score);
 
     speed -= 5;
-    spawnFood(); // Generamos una nueva comida
+    spawnFood();
   }
 }
 
@@ -159,10 +160,12 @@ function endGame(interval) {
   $(".snake").css({
     display: "none",
   });
-
   $(".food").css({
     display: "none",
   });
-
-  alert("Game Over");
+  $(".gameOver").css({ display: "flex" });
+  $(".score").css({ display: "none" });
+  $(".reset").on("click", () => {
+    startGame();
+  });
 }
